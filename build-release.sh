@@ -20,5 +20,5 @@ env=$5
 output_file=$6
 
 gulp --cordova 'build --release android' --env=staging
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $storekey -storepass $storepass -keypass $keypass platforms/android/build/outputs/apk/android-release-unsigned.apk $alias
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $storekey -storepass $storepass -keypass $keypass platforms/android/build/outputs/apk/android-release-unsigned.apk $key_alias
 zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk $output_file
