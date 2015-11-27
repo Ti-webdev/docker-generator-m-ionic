@@ -1,4 +1,4 @@
-FROM beevelop/cordova:latest
+FROM beevelop/cordova:5.4.0
 
 ENV IONIC_CLI_VERSION 1.7.10
 ENV NODE_MODULES_DIR node_modules
