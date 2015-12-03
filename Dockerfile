@@ -5,7 +5,7 @@ ENV NODE_MODULES_DIR node_modules
 ENV BOWER_CLIENT_ID 896698526080
 ENV BOWER_DIR app/bower_components
 
-RUN echo y | android update sdk -a -u -t extra-google-google_play_services,extra-google-m2repository
+RUN echo y | android update sdk -a -u -t extra-google-google_play_services,extra-google-m2repository,extra-android-support
 
 RUN apt-get update -y && \
   apt-get install -y \
