@@ -1,6 +1,7 @@
-FROM beevelop/cordova:5.4.0
+FROM beevelop/android-nodejs:v4
 
-ENV IONIC_CLI_VERSION 1.7.10
+ENV CORDOVA_VERSION 5.4.1
+ENV IONIC_CLI_VERSION 1.7.12
 ENV NODE_MODULES_DIR node_modules
 ENV BOWER_CLIENT_ID 896698526080
 ENV BOWER_DIR app/bower_components
@@ -26,7 +27,8 @@ RUN npm install --global \
   generator-m-ionic \
   gulp \
   ionic@$IONIC_CLI_VERSION \
-  yo
+  yo \
+  cordova@${CORDOVA_VERSION}
 
 EXPOSE 3000
 EXPOSE 3001
