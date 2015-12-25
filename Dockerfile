@@ -1,5 +1,7 @@
-FROM beevelop/android-nodejs:v4
+FROM manabugt/android
+#FROM beevelop/android-nodejs:v4
 
+ENV NODEJS_VERSION 5.3.0
 ENV CORDOVA_VERSION 5.4.1
 ENV IONIC_CLI_VERSION 1.7.12
 ENV MIONIC_VERSION 1.5.0
@@ -7,8 +9,9 @@ ENV NODE_MODULES_DIR node_modules
 ENV BOWER_CLIENT_ID 896698526080
 ENV BOWER_DIR app/bower_components
 
-#RUN echo y   | android update sdk -a -u -t extra-google-google_play_services,extra-google-m2repository,extra-android-support
-RUN echo yes | android update sdk -u -t tool,platform-tool,extra-android-m2repository,extra-android-support,extra-google-m2repository,extra-google-google_play_services
+# zipalign
+ENV PATH $PATH:/opt/android-sdk-linux/build-tools/23.0.1
+RUN which zipalign
 
 RUN apt-get update -y && \
   apt-get install -y \
@@ -23,6 +26,18 @@ RUN apt-get update -y && \
   type make && \
   type ssh-keyscan && \
   apt-get clean
+
+# NODEJS
+# Set Environment Variables
+ENV PATH $PATH:/opt/nodejs/bin
+WORKDIR "/opt"
+RUN curl -O https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz && \
+    # Extract and move to /opt
+    tar xf node-v${NODEJS_VERSION}-linux-x64.tar.gz && \
+    mv node-v${NODEJS_VERSION}-linux-x64 /opt/nodejs && \
+
+    # Clean up
+    rm node-v${NODEJS_VERSION}-linux-x64.tar.gz
 
 RUN npm install --global \
   bower \
