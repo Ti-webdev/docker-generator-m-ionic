@@ -2,6 +2,7 @@ FROM beevelop/android-nodejs:v4
 
 ENV CORDOVA_VERSION 5.4.1
 ENV IONIC_CLI_VERSION 1.7.12
+ENV MIONIC_VERSION 1.5.0
 ENV NODE_MODULES_DIR node_modules
 ENV BOWER_CLIENT_ID 896698526080
 ENV BOWER_DIR app/bower_components
@@ -24,7 +25,7 @@ RUN apt-get update -y && \
 
 RUN npm install --global \
   bower \
-  generator-m-ionic \
+  generator-m-ionic@${MIONIC_VERSION} \
   gulp \
   ionic@$IONIC_CLI_VERSION \
   yo \
